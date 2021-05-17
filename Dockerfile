@@ -20,6 +20,8 @@ ENV LINUX_MM_GIT=https://github.com/hnaz/linux-mm.git
 ENV LINUX_NEXT=y
 ENV LINUX_NEXT_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
+ENV N_JOBS=6
+
 RUN apt-get update
 
 # install minimal requirements for compile linux kernel
@@ -39,3 +41,15 @@ RUN if [ "$LINUX_STABLE" = "y" ]; then git clone $LINUX_STABLE_GIT $WORKDIR/linu
 RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone $LINUX_STABLE_RC_GIT $WORKDIR/linux-stable-rc; fi
 RUN if [ "$LINUX_MM" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-mm; fi
 RUN if [ "$LINUX_NEXT" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-next; fi
+
+# install qemu and buildroot for testing
+
+RUN apt-get install -y qemu-system
+RUN git clone git://git.buildroot.net/buildroot $WORKDIR/buildroot
+
+# build buildroot
+
+RUN apt-get install -y cpio unzip wget rsync
+COPY ./srcs/buildroot_config $WORKDIR/buildroot/.config
+RUN cd $WORKDIR/buildroot && \
+	make -j$N_JOBS
