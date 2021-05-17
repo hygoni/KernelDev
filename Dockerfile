@@ -15,7 +15,7 @@ RUN apt-get update
 # See: https://www.kernel.org/doc/html/latest/process/changes.html
 # See: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
 
-RUN apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev
+RUN apt-get install -y bc build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
 # install packages for development
 
