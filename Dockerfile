@@ -3,11 +3,22 @@ LABEL maintainer="Hyeonggon Yoo <42.hyeyoo@gmail.com>"
 
 # Configuration
 
+ENV WORKDIR=/root
+
 ENV LINUX_MAINLINE=n
+ENV LINUX_MAINLINE_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
 ENV LINUX_STABLE=n
+ENV LINUX_STABLE_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+
 ENV LINUX_STABLE_RC=y
+ENV LINUX_STABLE_RC_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git
+
 ENV LINUX_MM=y
+ENV LINUX_MM_GIT=https://github.com/hnaz/linux-mm.git
+
 ENV LINUX_NEXT=y
+ENV LINUX_NEXT_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 RUN apt-get update
 
@@ -23,8 +34,8 @@ RUN apt-get install -y git exuberant-ctags vim cscope mutt
 
 # clone linux kernel repositories
 
-RUN if [ "$LINUX_MAINLINE" = "y" ]; then git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git; fi
-RUN if [ "$LINUX_STABLE" = "y" ]; then git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git; fi
-RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git; fi
-RUN if [ "$LINUX_MM" = "y" ]; then git clone https://github.com/hnaz/linux-mm.git; fi
-RUN if [ "$LINUX_NEXT" = "y" ]; then git clone https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git; fi
+RUN if [ "$LINUX_MAINLINE" = "y" ]; then git clone $LINUX_MAINLINE_GIT $WORKDIR/linux; fi
+RUN if [ "$LINUX_STABLE" = "y" ]; then git clone $LINUX_STABLE_GIT $WORKDIR/linux-stable; fi
+RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone $LINUX_STABLE_RC_GIT $WORKDIR/linux-stable-rc; fi
+RUN if [ "$LINUX_MM" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-mm; fi
+RUN if [ "$LINUX_NEXT" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-next; fi
