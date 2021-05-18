@@ -53,3 +53,5 @@ RUN apt-get install -y cpio unzip wget rsync
 COPY ./srcs/buildroot_config_x86_64 $WORKDIR/buildroot/.config
 RUN cd $WORKDIR/buildroot && \
 	make -j$N_JOBS
+
+COPY ./scrcs/qemu.sh $WORKDIR/buildroot
