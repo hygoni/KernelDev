@@ -11,13 +11,13 @@ ENV LINUX_MAINLINE_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/
 ENV LINUX_STABLE=n
 ENV LINUX_STABLE_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 
-ENV LINUX_STABLE_RC=y
+ENV LINUX_STABLE_RC=n
 ENV LINUX_STABLE_RC_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git
 
 ENV LINUX_MM=y
 ENV LINUX_MM_GIT=https://github.com/hnaz/linux-mm.git
 
-ENV LINUX_NEXT=y
+ENV LINUX_NEXT=n
 ENV LINUX_NEXT_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 ENV N_JOBS=6
