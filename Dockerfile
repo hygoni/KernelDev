@@ -39,6 +39,17 @@ RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone $LINUX_STABLE_RC_GIT $WORKDI
 RUN if [ "$LINUX_MM" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-mm; fi
 RUN if [ "$LINUX_NEXT" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-next; fi
 
+# build cscope database
+# Note: Sometimes You should create database again,
+# because the database doesn't match after monthes...
+
+RUN apt-get install -y cscope
+RUN if [ "$LINUX_MAINLINE" = "y" ]; then cd $WORKDIR/linux && cscope -RUbq; fi
+RUN if [ "$LINUX_STABLE" = "y" ]; then cd $WORKDIR/linux-stable && cscope -RUbq; fi
+RUN if [ "$LINUX_STABLE_RC" = "y" ]; then cd $WORKDIR/linux-stable-rc && cscope -RUbq; fi
+RUN if [ "$LINUX_MM" = "y" ]; then cd $WORKDIR/linux-mm && cscope -RUbq; fi
+RUN if [ "$LINUX_NEXT" = "y" ]; then cd  $WORKDIR/linux-next && cscope -RUbq; fi
+
 # install qemu and buildroot for testing
 
 RUN apt-get install -y qemu-system
