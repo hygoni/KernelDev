@@ -30,12 +30,9 @@ RUN apt-get update
 
 RUN apt-get install -y bc build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
-# install packages for development
-
-RUN apt-get install -y git exuberant-ctags vim cscope mutt
-
 # clone linux kernel repositories
 
+RUN apt-get install -y git
 RUN if [ "$LINUX_MAINLINE" = "y" ]; then git clone $LINUX_MAINLINE_GIT $WORKDIR/linux; fi
 RUN if [ "$LINUX_STABLE" = "y" ]; then git clone $LINUX_STABLE_GIT $WORKDIR/linux-stable; fi
 RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone $LINUX_STABLE_RC_GIT $WORKDIR/linux-stable-rc; fi
