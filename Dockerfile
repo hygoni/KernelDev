@@ -54,4 +54,4 @@ COPY ./srcs/buildroot_config_x86_64 $WORKDIR/buildroot/.config
 RUN cd $WORKDIR/buildroot && \
 	make -j$N_JOBS
 
-COPY ./scrcs/qemu.sh $WORKDIR/buildroot
+COPY ./srcs/qemu.sh $WORKDIR/buildroot
