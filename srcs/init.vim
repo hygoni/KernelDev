@@ -16,3 +16,22 @@ set noexpandtab
 " not familiar with those options, just trying it
 set autoindent
 set smartindent
+
+set nocompatible               " be improved, required
+filetype off                   " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()            " required
+Plugin 'VundleVim/Vundle.vim'  " required
+
+" ===================
+" List of plugins here
+" ===================
+
+Plugin 'ronakg/quickr-cscope.vim'
+
+" ===================
+" end of plugins
+" ===================
+call vundle#end()               " required
+filetype plugin indent on       " required
