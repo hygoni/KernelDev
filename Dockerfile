@@ -55,3 +55,7 @@ RUN cd $WORKDIR/buildroot && \
 	make -j$N_JOBS
 
 COPY ./srcs/qemu.sh $WORKDIR/buildroot
+
+# install clang
+
+RUN apt-get install -y clang-10 clang-11
