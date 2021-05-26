@@ -74,3 +74,4 @@ RUN apt-get install -y neovim
 RUN mkdir -p /root/.config/nvim/bundle
 RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.config/nvim/bundle/Vundle.vim
 COPY ./srcs/init.vim /root/.config/nvim/init.vim
+RUN vim +PluginInstall +qall
