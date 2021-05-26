@@ -67,3 +67,10 @@ COPY ./srcs/qemu.sh $WORKDIR/buildroot
 # install clang
 
 RUN apt-get install -y clang-10 clang-11
+
+# install neovim and plugins
+
+RUN apt-get install -y neovim
+RUN mkdir -p /root/.config/nvim/bundle
+RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.config/nvim/bundle/Vundle.vim
+COPY ./srcs/init.vim /root/.config/nvim/init.vim
