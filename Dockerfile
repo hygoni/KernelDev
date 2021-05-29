@@ -14,10 +14,10 @@ ENV LINUX_STABLE_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linu
 ENV LINUX_STABLE_RC=n
 ENV LINUX_STABLE_RC_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git
 
-ENV LINUX_MM=y
+ENV LINUX_MM=n
 ENV LINUX_MM_GIT=https://github.com/hnaz/linux-mm.git
 
-ENV LINUX_NEXT=n
+ENV LINUX_NEXT=y
 ENV LINUX_NEXT_GIT=https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 ENV N_JOBS=6
@@ -68,10 +68,19 @@ COPY ./srcs/qemu.sh $WORKDIR/buildroot
 
 RUN apt-get install -y clang-10 clang-11
 
-# install neovim and plugins
+# make tag file
+
+RUN apt-get install -y exuberant-ctags
+RUN if [ "$LINUX_MAINLINE" = "y" ]; then cd $WORKDIR/linux && ctags -R; fi
+RUN if [ "$LINUX_STABLE" = "y" ]; then cd $WORKDIR/linux-stable && ctags -R; fi
+RUN if [ "$LINUX_STABLE_RC" = "y" ]; then cd $WORKDIR/linux-stable-rc && ctags -R; fi
+RUN if [ "$LINUX_MM" = "y" ]; then cd $WORKDIR/linux-mm && ctags -R; fi
+RUN if [ "$LINUX_NEXT" = "y" ]; then cd  $WORKDIR/linux-next && ctags -R; fi
 
 RUN apt-get install -y neovim
 RUN mkdir -p /root/.config/nvim/bundle
 RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.config/nvim/bundle/Vundle.vim
 COPY ./srcs/init.vim /root/.config/nvim/init.vim
 RUN vim +PluginInstall +qall
+
+WORKDIR /root

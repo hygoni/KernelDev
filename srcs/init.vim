@@ -29,9 +29,16 @@ Plugin 'VundleVim/Vundle.vim'  " required
 " ===================
 
 Plugin 'hygoni/quickr-cscope.vim'
+Plugin 'preservim/tagbar'
 
 " ===================
 " end of plugins
 " ===================
 call vundle#end()               " required
 filetype plugin indent on       " required
+
+" Tagbar shortcut
+nmap <F8> :TagbarToggle<CR>
+
+" Prevent ctags mistake
+map <C-]> g]
