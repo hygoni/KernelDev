@@ -37,7 +37,7 @@ RUN if [ "$LINUX_MAINLINE" = "y" ]; then git clone $LINUX_MAINLINE_GIT $WORKDIR/
 RUN if [ "$LINUX_STABLE" = "y" ]; then git clone $LINUX_STABLE_GIT $WORKDIR/linux-stable; fi
 RUN if [ "$LINUX_STABLE_RC" = "y" ]; then git clone $LINUX_STABLE_RC_GIT $WORKDIR/linux-stable-rc; fi
 RUN if [ "$LINUX_MM" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-mm; fi
-RUN if [ "$LINUX_NEXT" = "y" ]; then git clone $LINUX_MM_GIT $WORKDIR/linux-next; fi
+RUN if [ "$LINUX_NEXT" = "y" ]; then git clone $LINUX_NEXT_GIT $WORKDIR/linux-next; fi
 
 # build cscope database
 # Note: Sometimes You should create database again,
