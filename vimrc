@@ -1,5 +1,7 @@
 let mapleader = ";"
 
+map <leader>b :Git blame<CR>
+
 " highlight on spelling errors
 set spell
 " turn on line numbers
